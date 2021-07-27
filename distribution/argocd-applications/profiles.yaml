@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: profiles
+  namespace: argocd
+spec:
+  project: kubeflow-profiles
+  source:
+    repoURL: git@github.com:blairdrummond/kubeflow-profiles.git
+    targetRevision: master
+    path: .
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
